@@ -1,0 +1,56 @@
+Connect:
+
+Login:                  psql -d production
+Get all schemas:        SELECT * FROM information_schema.schemata; 
+Get tables in schema:   SELECT table_name FROM information_schema.tables WHERE table_schema = 'science_turbo_master_pipeline_10_12_2023_16_09_15';
+Good schema:            
+                        SELECT * FROM science_turbo_master_pipeline_10_17_2023_07_19_44.image_status ORDER BY completion;   (best)
+                        SELECT * FROM science_turbo_master_pipeline_10_21_2023_09_17_10.image_status ORDER BY completion;
+                        SELECT * FROM science_turbo_master_pipeline_10_16_2023_08_44_14.image_status ORDER BY completion;
+                        SELECT * FROM science_turbo_master_pipeline_10_17_2023_12_58_56.image_status ORDER BY completion;   (worst)
+
+What do we want:
+- I could (try to) get averages for each step
+- Percent  of photos compleate
+- Eventually be able to look throught photos??? (Need API I think)
+- by night and overall
+- yes for images
+
+
+
+
+More advanced queries:
+
+SELECT schema_name
+FROM information_schema.schemata
+WHERE schema_name LIKE 'science_turbo_master_pipeline%';
+
+
+
+-- Create a Common Table Expression (CTE) to store the result of the query
+WITH selected_schemas AS (
+    SELECT schema_name
+    FROM information_schema.schemata
+    WHERE schema_name LIKE 'science_turbo_master_pipeline%'
+)
+
+
+SELECT AVG(processing_time) FROM science_turbo_master_pipeline_10_17_2023_07_19_44.image_status;
+
+
+
+
+This Data:
+
+Best
+SELECT * FROM science_turbo_master_pipeline_10_14_2023_23_10_49.image_status ORDER BY completion;
+
+No Image
+SELECT * FROM science_turbo_master_pipeline_10_14_2023_15_00_51.image_status ORDER BY completion;
+SELECT * FROM science_turbo_master_pipeline_10_13_2023_09_16_39.image_status ORDER BY completion;
+SELECT * FROM science_turbo_master_pipeline_10_14_2023_13_48_12.image_status ORDER BY completion;
+SELECT * FROM science_turbo_master_pipeline_10_12_2023_21_52_09.image_status ORDER BY completion;
+
+No Data
+SELECT * FROM science_turbo_master_pipeline_10_14_2023_22_15_44.image_status ORDER BY completion;
+
