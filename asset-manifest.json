@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/turbo_website/static/js/main.6fb4f17c.js",
+    "index.html": "/turbo_website/index.html",
+    "main.6fb4f17c.js.map": "/turbo_website/static/js/main.6fb4f17c.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.6fb4f17c.js"
+  ]
+}
